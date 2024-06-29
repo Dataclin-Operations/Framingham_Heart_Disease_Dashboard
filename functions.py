@@ -66,7 +66,7 @@ def bar_chart(df, xx, yy,  txt="", labls={},hover={}, colors=[], hight=600, wdth
     
         # Title
          title={'text': ttle, 'y': 0.95, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'}, #title center and size
-         title_font_size=22,  # Title font size
+         title_font_size=18,  # Title font size
     
         # Xaxis
         xaxis=dict(

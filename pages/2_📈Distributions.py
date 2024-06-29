@@ -53,7 +53,7 @@ def cholesterol_age():
     colors =['#4D4D4D','#008294','#bdbdbd','#5A5A8B', "orange"],
     hight=500,
     wdth=900,
-    ttle="Distribution of Cholesterol Levels impact for 10-Year CHD Risk, Varies by Age Group ",
+    ttle="Varies by Age Group ",
     xtitle="Ten-Year CHD Risk" ,
     ytitle="Cholesterol leveL" ,
     colour='ageGroup', 
@@ -72,7 +72,7 @@ def cholesterol_diab():
     colors =['#4D4D4D','#008294','#bdbdbd','#008080','#5A5A8B'],
     hight=500,
     wdth=900,
-    ttle="Distribution of Cholesterol Levels impact for 10-Year CHD Risk, Varies by Diabetes ",
+    ttle="Varies by Diabetes ",
     xtitle="Ten-Year CHD Risk" ,
     ytitle="Cholesterol leveL" ,
     colour='diabetes', 
@@ -90,7 +90,7 @@ def cholesterol_stroke():
     colors =['#4D4D4D','#008294','#bdbdbd','#008080','#5A5A8B'],
     hight=500,
     wdth=900,
-    ttle="Distribution of Cholesterol Levels impact for 10-Year CHD Risk, Varies by Prevalent Stroke ",
+    ttle="Varies by Prevalent Stroke ",
     xtitle="Ten-Year CHD Risk" ,
     ytitle="Cholesterol leveL" ,
     colour='prevalentStroke', 
@@ -117,7 +117,7 @@ def heart_age():
     colors =['#4D4D4D','#008294','#bdbdbd','#5A5A8B', "orange"],
     hight=500,
     wdth=900,
-    ttle="Distribution of Heart Rate impact for 10-Year CHD Risk, Varies by Age Group ",
+    ttle="Varies by Age Group ",
     xtitle="Ten-Year CHD Risk" ,
     ytitle="Heart Rate" ,
     colour='ageGroup', 
@@ -136,7 +136,7 @@ def heart_diab():
     colors =['#4D4D4D','#008294','#bdbdbd','#008080','#5A5A8B'],
     hight=500,
     wdth=900,
-    ttle="Distribution of Heart Rate impact for 10-Year CHD Risk, Varies by Diabetes ",
+    ttle="Varies by Diabetes ",
     xtitle="Ten-Year CHD Risk" ,
     ytitle="Heart Rate" ,
     colour='diabetes', 
@@ -155,7 +155,7 @@ def heart_stroke():
     colors =['#4D4D4D','#008294','#bdbdbd','#008080','#5A5A8B'],
     hight=500,
     wdth=900,
-    ttle="Distribution of Heart Rate impact for 10-Year CHD Risk, Varies by Prevalent Stroke ",
+    ttle="Varies by Prevalent Stroke ",
     xtitle="Ten-Year CHD Risk" ,
     ytitle="Heart Rate" ,
     colour='prevalentStroke', 
@@ -174,6 +174,9 @@ def dashboard1():
     bar_selection = st.sidebar.selectbox(" ", ["Heart Rate", "Prevalent Stroke"], label_visibility="collapsed")
 
     if bar_selection == "Heart Rate":
+        left_space, main_content, right_space = st.columns([1, 7, 1])
+        with main_content:
+            st.header('Distributions of Heart Rate impact for 10-Year CHD Risk', divider='blue')
         heart_age()
         col1, col2= st.columns(2)
         with col1:
@@ -182,6 +185,9 @@ def dashboard1():
             heart_stroke()
 
     elif bar_selection == "Prevalent Stroke":
+        left_space, main_content, right_space = st.columns([1, 12, 1])
+        with main_content:
+            st.header('Distributions of Prevalent Stroke impact for 10-Year CHD Risk', divider='blue')
         cholesterol_age()
         col1, col2= st.columns(2)
         with col1:

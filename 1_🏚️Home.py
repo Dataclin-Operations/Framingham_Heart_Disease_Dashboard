@@ -98,7 +98,7 @@ def metrics(label, var):
                     border-radius: 15px;
                     border: 5px solid #4CAF50;
                     text-align: center;
-                    font-size: 1.4em;
+                    font-size: 1.2em;
                     color: #4CAF50;
                     font-weight: bold;
                     margin:10px;
@@ -121,7 +121,7 @@ def metrics(label, var):
 def smoke_diabet():
     grouped_chd_dia = df_clean.groupby(['currentSmoker',"diabetes"]).TenYearCHD.mean().reset_index(name='per')
     grouped_chd_dia["currentSmoker"] = grouped_chd_dia["currentSmoker"].apply(lambda x : "Smoker" if x == 1 else "Non-Smoker")
-    grouped_chd_dia["diabetes"] = grouped_chd_dia["diabetes"].apply(lambda x : "Diabetes" if x == 1 else "Non-Diabetes")
+    grouped_chd_dia["diabetes"] = grouped_chd_dia["diabetes"].apply(lambda x : "Diabetic" if x == 1 else "Non-Diabetic")
     # k["per"] = round(k["per"]*100, 2)
     grouped_chd_dia["annotation_per"] = round(grouped_chd_dia["per"]*100, 0)
     grouped_chd_dia["annotation_per"] = grouped_chd_dia["annotation_per"].astype(int)
@@ -133,15 +133,15 @@ def smoke_diabet():
     "currentSmoker",
     "per",
     txt = "annotation_per",
-    labls = {'currentSmoker': 'Current Smoker', 'diabetes': 'Diabetes', 'per': 'CHD Risk', "annotation_per": "False"},
-    hover={"annotation_per":False},
+    labls = {'currentSmoker': 'Smoking Status', 'diabetes': 'Diabetes Status', 'per': 'CHD Risk', "annotation_per": "False"},
+    hover={"annotation_per":False, "diabetes":False},
     colors =['#4D4D4D','#008294'] ,
     wdth=900,
-    ttle="10-Year CHD Risk Percentage: Smoking Status vs. Diabetes",
+    ttle="10-Year CHD Risk % : Smoking Status vs. Diabetes",
     xtitle="Smoking Status" ,
     ytitle="10-Year CHD Risk %" ,
     colour='diabetes', 
-    bg=0.6, 
+    bg=0.48, 
     bgg=0.1,
     yscale = False,
     yscale_percentage=True,
@@ -163,16 +163,16 @@ def smoke_stroke():
     "currentSmoker",
     "per",
     txt = "annotation_per",
-    labls = {'currentSmoker': 'Current Smoker', 'prevalentStroke': 'Prevalent Stroke', 'per': 'CHD Risk', "annotation_per": "False"},
+    labls = {'currentSmoker': 'Smoking Status', 'prevalentStroke': 'Prevalent Stroke', 'per': 'CHD Risk', "annotation_per": "False"},
     hover={"annotation_per":False},
     colors =['#8A8D90','#1192e9'] ,
     hight=500,
     wdth=900,
-    ttle="10-Year CHD Risk Percentage: Smoking Status vs. Prevalent Stroke",
+    ttle="10-Year CHD Risk % : Smoking Status vs. Prevalent Stroke",
     xtitle="Smoking Status" ,
     ytitle="10-Year CHD Risk %" ,
     colour='prevalentStroke', 
-    bg=0.6, 
+    bg=0.5, 
     bgg=0.1,
     yscale = False,
     yscale_percentage=True
@@ -188,7 +188,7 @@ def smoke_med():
     dic5 = {
         "0": "No Meds",
         "1": "Med Users",
-        "-1": "NA",
+        "-1": "N/A",
         }
     grouped_chd_bp["BPMeds"] = grouped_chd_bp["BPMeds"].map(dic5)
     # k["per"] = round(k["per"]*100, 2)
@@ -201,20 +201,20 @@ def smoke_med():
     "currentSmoker",
     "per",
     txt = "annotation_per",
-    labls = {'currentSmoker': 'Current Smoker', 'BPMeds': 'Blood Presure Medication', 'per': 'CHD Risk', "annotation_per": "False"},
+    labls = {'currentSmoker': 'Smoking Status', 'BPMeds': 'Blood pressure Medication', 'per': 'CHD Risk', "annotation_per": "False"},
     hover={"annotation_per":False},
     colors =["#1e3d59",'silver','#FF7F0E',] ,
     hight=500,
     wdth=900,
-    ttle="10-Year CHD Risk Percentage: Smoking Status vs. Blood Presure Medication",
+    ttle="10-Year CHD Risk % : Smoking Status vs. Blood pressure Medication",
     xtitle="Smoking Status" ,
     ytitle="10-Year CHD Risk %" ,
     colour='BPMeds', 
-    bg=0.5, 
+    bg=0.18, 
     bgg=0.1,
     yscale = False,
     yscale_percentage=True,
-    leg="Blood Presure Medication"
+    leg="Blood pressure Medication"
 )
 
 
@@ -235,16 +235,16 @@ def smoke_hyper():
     "currentSmoker",
     "per",
     txt = "annotation_per",
-    labls = {'currentSmoker': 'Current Smoker', 'prevalentHyp': 'Prevalent Hypertension', 'per': 'CHD Risk', "annotation_per": "False"},
+    labls = {'currentSmoker': 'Smoking Status', 'prevalentHyp': 'Prevalent Hypertension', 'per': 'CHD Risk', "annotation_per": "False"},
     hover={"annotation_per":False},
     colors =['#7a2048','#408ec6'] ,
     hight=500,
     wdth=900,
-    ttle="10-Year CHD Risk Percentage: Smoking Status vs. Prevalent Hypertension",
+    ttle="10-Year CHD Risk % : Smoking Status vs. Prevalent Hypertension",
     xtitle="Smoking Status" ,
     ytitle="10-Year CHD Risk %" ,
     colour='prevalentHyp', 
-    bg=0.6, 
+    bg=0.4, 
     bgg=0.1,
     yscale = False,
     yscale_percentage=True
@@ -259,7 +259,7 @@ def smoke_hyper():
 def gender_diabetic():
     grouped_chd_gender = df_clean.groupby(['male',"diabetes"]).TenYearCHD.mean().reset_index(name='per')
     grouped_chd_gender["male"] = grouped_chd_gender["male"].apply(lambda x : "Male" if x == 1 else "Female")
-    grouped_chd_gender["diabetes"] = grouped_chd_gender["diabetes"].apply(lambda x : "Diabetes" if x == 1 else "Non-Diabetes")
+    grouped_chd_gender["diabetes"] = grouped_chd_gender["diabetes"].apply(lambda x : "Diabetic" if x == 1 else "Non-Diabetic")
 
     grouped_chd_gender["annotation_per"] = round(grouped_chd_gender["per"]*100, 0)
     grouped_chd_gender["annotation_per"] = grouped_chd_gender["annotation_per"].astype(int)
@@ -270,16 +270,16 @@ def gender_diabetic():
     "male",
     "per",
     txt = "annotation_per",
-    labls = {'male': 'Gender', 'diabetes': 'Diabetes', 'per': 'CHD Risk'},
-    hover={"annotation_per":False},
+    labls = {'male': 'Gender', 'diabetes': 'Diabetes status', 'per': 'CHD Risk'},
+    hover={"annotation_per":False, "diabetes":False},
     colors =['#4D4D4D','#008294'] ,
     hight=500,
     wdth=900,
-    ttle="10-Year CHD Risk Percentage: Gender vs. Diabetes",
+    ttle="10-Year CHD Risk % : Gender vs. Diabetes",
     xtitle="Gender" ,
     ytitle="10-Year CHD Risk %" ,
     colour='diabetes', 
-    bg=0.6, 
+    bg=0.46, 
     bgg=0.1,
     yscale = False,
     yscale_percentage=True
@@ -304,11 +304,11 @@ def gender_stroke():
     colors =['#8A8D90','#1192e9'] ,
     hight=500,
     wdth=900,
-    ttle="10-Year CHD Risk Percentage: Gender vs. Prevalent Stroke",
+    ttle="10-Year CHD Risk % : Gender vs. Prevalent Stroke",
     xtitle="Gender" ,
     ytitle="10-Year CHD Risk %" ,
     colour='prevalentStroke', 
-    bg=0.6, 
+    bg=0.49, 
     bgg=0.1,
     yscale = False,
     yscale_percentage=True
@@ -325,7 +325,7 @@ def gender_med():
     dic5 = {
         "0": "No Meds",
         "1": "Med Users",
-        "-1": "NA",
+        "-1": "N/A",
         }
     grouped_chd_med["BPMeds"] = grouped_chd_med["BPMeds"].map(dic5)
     # k["per"] = round(k["per"]*100, 2)
@@ -341,20 +341,20 @@ def gender_med():
     "male",
     "per",
     txt = "annotation_per",
-    labls = {'male': 'Gender', 'BPMeds': 'Blood Presure Medication', 'per': 'CHD Risk', "annotation_per": False},
+    labls = {'male': 'Gender', 'BPMeds': 'Blood pressure Medication', 'per': 'CHD Risk', "annotation_per": False},
     hover={"annotation_per":False},
     colors =["#1e3d59",'silver','#FF7F0E',] ,
     hight=500,
     wdth=900,
-    ttle="10-Year CHD Risk Percentage: Gender vs. Blood Presure Medication",
+    ttle="10-Year CHD Risk % : Gender vs. Blood pressure Medication",
     xtitle="Gender" ,
     ytitle="10-Year CHD Risk %" ,
     colour='BPMeds', 
-    bg=0.5, 
+    bg=0.18, 
     bgg=0.1,
     yscale = False,
     yscale_percentage=True,
-    leg="Blood Presure Medication"
+    leg="Blood pressure Medication"
 )
 
 
@@ -378,11 +378,11 @@ def gender_hyper():
     colors =['#7a2048','#408ec6'] ,
     hight=500,
     wdth=900,
-    ttle="10-Year CHD Risk Percentage: Gender vs. Prevalent Hypertension",
+    ttle="10-Year CHD Risk % : Gender vs. Prevalent Hypertension",
     xtitle="Gender" ,
     ytitle="10-Year CHD Risk %" ,
     colour='prevalentHyp', 
-    bg=0.6, 
+    bg=0.42, 
     bgg=0.1,
     yscale = False,
     yscale_percentage=True,
@@ -396,7 +396,7 @@ def gender_hyper():
 
 def age_diabetic():
     grouped_chd_age = df_clean.groupby(['ageGroup',"diabetes"]).TenYearCHD.mean().reset_index(name='per')
-    grouped_chd_age["diabetes"] = grouped_chd_age["diabetes"].apply(lambda x : "Diabetes" if x == 1 else "Non-Diabetes")
+    grouped_chd_age["diabetes"] = grouped_chd_age["diabetes"].apply(lambda x : "Diabetic" if x == 1 else "Non-Diabetic")
 
     grouped_chd_age["annotation_per"] = round(grouped_chd_age["per"]*100, 0)
     grouped_chd_age["annotation_per"] = grouped_chd_age["annotation_per"].astype(int)
@@ -408,12 +408,12 @@ def age_diabetic():
     "ageGroup",
     "per",
     txt = "annotation_per",
-    labls = {'ageGroup': 'Age Group', 'diabetes': 'Diabetes', 'per': 'CHD Risk'},
-    hover={"annotation_per":False},
+    labls = {'ageGroup': 'Age Group', 'diabetes': 'Diabetes Status', 'per': 'CHD Risk'},
+    hover={"annotation_per":False, 'diabetes':False},
     colors =['#bdbdbd','#008294'] ,
     hight=500,
     wdth=900,
-    ttle="10-Year CHD Risk Percentage: Age Group vs. Diabetes",
+    ttle="10-Year CHD Risk % : Age Group vs. Diabetes",
     xtitle="Age Group" ,
     ytitle="10-Year CHD Risk %" ,
     colour='diabetes', 
@@ -442,7 +442,7 @@ def correlations():
 
     fig = px.bar(corr_df, x='Features', y='correlation',text='correlation',
              labels={'TenYearCHD': '10-year CHD risk', 'count': 'Count', 'bmi_group_per': 'BMI Group'}, color='Features',
-             hover_data={'correlation':True,'p_value':True},
+             hover_data={'correlation':True,'p_value':True, 'Features':False},
              color_discrete_sequence = ['#008294', '#4D4D4D', '#bdbdbd', '#FF7F0E', '#f3ca20 ']
 
             # color_discrete_sequence=['#008294','#4D4D4D','#bdbdbd','#5A5A8B','#FF7F0E','#008294','#4D4D4D','#bdbdbd','#5A5A8B','#FF7F0E','#008080',]
@@ -457,7 +457,7 @@ def correlations():
     fig.update_layout(
         legend_title_text=None,
         #background 
-         bargap=0.5, title={'text': 'Correlation between 10-year CHD and (Age, Cigars per day, Blood pressure and BMI) ', 'y': 0.95, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'}, #title center and size
+         bargap=0.5, title={'text': 'Correlation between 10-year CHD and other clinical features', 'y': 0.95, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'}, #title center and size
         title_font_size=20,  # Title font size
         xaxis=dict(
             title='X Axis Title',  # Example X axis title
